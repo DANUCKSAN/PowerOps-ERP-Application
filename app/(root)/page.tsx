@@ -1,10 +1,11 @@
+import Dashboard from "@/components/Dashboard"
 
 
 
 const page = () => {
   return (
-    <div className='text-green-500'>
-         welcome to PowerOps ERP
+    <div className='text-green-500 flex'>
+         <Dashboard/>
 
         
      

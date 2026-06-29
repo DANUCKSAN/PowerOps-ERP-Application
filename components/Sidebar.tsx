@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { adminSidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 
 export default function Sidebar() {
@@ -11,6 +12,15 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
+         <Link href="/" className="flex items-center">
+          <Image
+            src="/images/logo1.svg"
+            alt="PowerOps"
+            width={170}
+            height={42}
+            className="h-9 w-auto mt-4 ml-4"
+          />
+        </Link>
       <nav className="sidebar-nav">
         {adminSidebarLinks.map((group) => (
           <div key={group.title} className="sidebar-group">

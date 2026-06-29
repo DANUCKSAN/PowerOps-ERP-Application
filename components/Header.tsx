@@ -10,15 +10,7 @@ export default function Header() {
       <div className="flex h-16 items-center px-6">
         
         {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/images/logo1.svg"
-            alt="PowerOps"
-            width={170}
-            height={42}
-            className="h-9 w-auto"
-          />
-        </Link>
+       
 
         {/* Search */}
         <div className="ml-10 hidden flex-1 max-w-md md:flex">

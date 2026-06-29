@@ -1,20 +1,21 @@
-import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
+import Header from "@/components/Header";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <div className="root-container">
-          <Header />
-          <Sidebar/>
-          <main className="flex-1">{children}</main>
-        </div>
-      </body>
-    </html>
+    <div className="flex min-h-screen bg-background text-foreground">
+      
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main area */}
+      <div className="flex flex-1 flex-col ml-4">
+        <Header />
+
+        <main className="flex mt-4">
+          {children}
+        </main>
+      </div>
+    </div>
   );
 }
