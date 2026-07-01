@@ -1,7 +1,7 @@
 import * as z from "zod"
 
 export const formSchema = z.object({
-  name: z
+  username: z
     .string()
     .min(5, "Username must be at least 5 characters.")
     .max(32, "Username must be at most 32 characters."),
