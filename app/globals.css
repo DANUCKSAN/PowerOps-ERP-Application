@@ -1,8 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-
-@custom-variant dark (&:is(.dark *));
 
 /* ==========================================================
    THEME TOKENS (Tailwind CSS v4)
@@ -44,25 +40,8 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 /* ==========================================================
@@ -137,16 +116,15 @@
   }
 
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
 
   html {
     scroll-behavior: smooth;
-    @apply font-sans;
   }
 
   body {
-    @apply font-sans bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
     min-height: 100vh;
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
@@ -230,87 +208,9 @@
   .page-header {
     @apply mb-8 flex items-center justify-between;
   }
-
-.auth-layout {
-  @apply min-h-screen bg-background text-foreground;
+  
 }
 
-.auth-grid {
-  @apply grid min-h-screen lg:grid-cols-[1.1fr_0.9fr];
-}
-
-/* Left branding panel */
-
-.auth-brand-panel {
-  @apply hidden border-r border-border bg-card px-10 py-8 lg:flex lg:flex-col lg:justify-between;
-}
-
-.auth-logo-link {
-  @apply inline-flex items-center gap-3;
-}
-
-.auth-logo-text {
-  @apply text-2xl font-bold tracking-tight text-foreground;
-}
-
-.auth-brand-content {
-  @apply max-w-xl;
-}
-
-.auth-eyebrow {
-  @apply mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-primary;
-}
-
-.auth-title {
-  @apply text-4xl font-bold leading-tight tracking-tight text-foreground;
-}
-
-.auth-description {
-  @apply mt-6 text-base leading-7 text-muted-foreground;
-}
-
-.auth-stats-grid {
-  @apply mt-10 grid grid-cols-2 gap-4;
-}
-
-.auth-stat-card {
-  @apply rounded-2xl border border-border bg-background p-5 shadow-sm;
-}
-
-.auth-stat-value {
-  @apply text-2xl font-bold text-foreground;
-}
-
-.auth-stat-label {
-  @apply mt-1 text-sm text-muted-foreground;
-}
-
-.auth-footer-text {
-  @apply text-sm text-muted-foreground;
-}
-
-/* Right auth panel */
-
-.auth-form-panel {
-  @apply flex min-h-screen flex-col items-center justify-center px-6 py-12;
-}
-
-.auth-form-wrapper {
-  @apply w-full max-w-md;
-}
-
-.auth-mobile-brand {
-  @apply mb-8 flex flex-col items-center gap-3 lg:hidden;
-}
-
-.auth-mobile-title {
-  @apply text-2xl font-bold tracking-tight text-foreground;
-}
-}
-
-/* ==========================================================
-   UTILITIES
-========================================================== */
 
 @layer utilities {
   .root-container {
@@ -341,73 +241,4 @@
   .text-gradient {
     @apply bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent;
   }
-}
-
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
 }

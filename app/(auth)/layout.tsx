@@ -4,71 +4,58 @@ import { ReactNode } from "react";
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <main className="auth-layout">
-      <section className="auth-grid">
-        <div className="auth-brand-panel">
+    <main className="grid grid-cols-2 min-h-screen">
+     
+        <div className="flex flex-col p-5 justify-center items-center bg-amber-200">
           <div>
-            <Link href="/" className="auth-logo-link">
+            <Link href="/">
               <Image
                 src="/images/logo1.svg"
                 alt="PowerOps Logo"
-                width={56}
-                height={56}
+                width={100}
+                height={100}
                 priority
+                className="mb-4"
               />
 
-              <span className="auth-logo-text">PowerOps</span>
+              <span className="text-red-600">PowerOps</span>
             </Link>
           </div>
 
-          <div className="auth-brand-content">
-            <p className="auth-eyebrow">Internal ERP Platform</p>
+          <div className="mt-10 max-w-md">
+            <p className="text-red-600">Internal ERP Platform</p>
 
-            <h1 className="auth-title">
+            <h1 className="text-4xl font-bold text-foreground mt-2">
               Control inventory, projects, and operations from one place.
             </h1>
 
-            <p className="auth-description">
+            <p className="mt-4 text-sm text-muted-foreground">
               PowerOps helps Electrifying Australia manage solar inventory,
               purchase orders, suppliers, installation projects, payments,
               returns, and operational reporting through one secure internal
               system.
             </p>
 
-            <div className="auth-stats-grid">
-              <div className="auth-stat-card">
-                <p className="auth-stat-value">100%</p>
-                <p className="auth-stat-label">Internal business control</p>
-              </div>
-
-              <div className="auth-stat-card">
-                <p className="auth-stat-value">ERP</p>
-                <p className="auth-stat-label">Built for solar operations</p>
-              </div>
             </div>
           </div>
 
-          <p className="auth-footer-text">
-            © {new Date().getFullYear()} PowerOps. Electrifying Australia.
-          </p>
-        </div>
-
-        {/* Right Side - Auth Form */}
-        <div className="auth-form-panel">
-          <div className="auth-mobile-brand">
+    
+        <div className="p-6 flex flex-col justify-center bg-background">
+          <div className="flex flex-col items-center mb-6">
             <Image
               src="/images/logo1.svg"
               alt="PowerOps Logo"
-              width={52}
-              height={52}
+              width={100}
+              height={100}
               priority
+
             />
-            <h1 className="auth-mobile-title">PowerOps</h1>
+            <h1 className="text-2xl font-bold text-foreground">PowerOps</h1>
           </div>
 
-          <div className="auth-form-wrapper">{children}</div>
+          <div>{children}</div>
         </div>
-      </section>
+     
     </main>
   );
 };
