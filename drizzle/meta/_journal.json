@@ -8,6 +8,13 @@
       "when": 1782942226302,
       "tag": "0000_lonely_genesis",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1782954830707,
+      "tag": "0001_nappy_salo",
+      "breakpoints": true
     }
   ]
 }

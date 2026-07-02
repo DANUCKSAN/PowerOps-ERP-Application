@@ -1,61 +1,81 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
+import { Boxes, ShieldCheck, TrendingUp } from "lucide-react";
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <main className="grid grid-cols-2 min-h-screen">
-     
-        <div className="flex flex-col p-5 justify-center items-center bg-amber-200">
-          <div>
-            <Link href="/">
+    <main className="auth-shell">
+      <section className="auth-brand-panel">
+        <div className="auth-brand-content">
+          <Link href="/" className="auth-brand-logo">
               <Image
                 src="/images/logo1.svg"
                 alt="PowerOps Logo"
-                width={100}
-                height={100}
+              width={132}
+              height={40}
                 priority
-                className="mb-4"
+              className="h-10 w-auto"
               />
-
-              <span className="text-red-600">PowerOps</span>
             </Link>
-          </div>
 
-          <div className="mt-10 max-w-md">
-            <p className="text-red-600">Internal ERP Platform</p>
+          <div className="auth-brand-copy">
+            <p className="auth-kicker">Internal ERP Platform</p>
 
-            <h1 className="text-4xl font-bold text-foreground mt-2">
+            <h1 className="auth-brand-title">
               Control inventory, projects, and operations from one place.
             </h1>
 
-            <p className="mt-4 text-sm text-muted-foreground">
+            <p className="auth-brand-description">
               PowerOps helps Electrifying Australia manage solar inventory,
               purchase orders, suppliers, installation projects, payments,
               returns, and operational reporting through one secure internal
               system.
             </p>
-
-            </div>
           </div>
 
-    
-        <div className="p-6 flex flex-col justify-center bg-background">
-          <div className="flex flex-col items-center mb-6">
+          <div className="auth-feature-grid" aria-label="PowerOps capabilities">
+            <div className="auth-feature-card">
+              <Boxes className="size-5" />
+              <div>
+                <span>Inventory</span>
+                <p>Stock, warehouses, and product flow.</p>
+              </div>
+            </div>
+
+            <div className="auth-feature-card">
+              <TrendingUp className="size-5" />
+              <div>
+                <span>Operations</span>
+                <p>Projects, orders, and supplier tracking.</p>
+              </div>
+            </div>
+
+            <div className="auth-feature-card">
+              <ShieldCheck className="size-5" />
+              <div>
+                <span>Secure</span>
+                <p>Role-based internal access.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="auth-form-panel">
+        <div className="auth-mobile-logo">
             <Image
               src="/images/logo1.svg"
               alt="PowerOps Logo"
-              width={100}
-              height={100}
+            width={132}
+            height={40}
               priority
-
+            className="h-10 w-auto"
             />
-            <h1 className="text-2xl font-bold text-foreground">PowerOps</h1>
           </div>
 
-          <div>{children}</div>
-        </div>
-     
+        {children}
+      </section>
     </main>
   );
 };

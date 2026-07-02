@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { LockKeyhole, UserRound } from "lucide-react";
 import * as z from "zod";
 
 import {
@@ -50,10 +51,10 @@ const SignInForm = () => {
   return (
     <div className="auth-card">
       <div className="auth-card-header">
-        <p className="auth-card-eyebrow">Welcome back</p>
-        <h1 className="auth-card-title">Sign in to PowerOps</h1>
+        <p className="auth-card-eyebrow">Secure access</p>
+        <h1 className="auth-card-title">Welcome back</h1>
         <p className="auth-card-description">
-          Manage inventory, projects, payments, and operations securely.
+          Sign in to manage inventory, projects, payments, and operations.
         </p>
       </div>
 
@@ -64,16 +65,21 @@ const SignInForm = () => {
             control={form.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="username">Username</FieldLabel>
+                <FieldLabel htmlFor="username" className="auth-field-label">
+                  Username
+                </FieldLabel>
 
-                <Input
-                  {...field}
-                  id="username"
-                  type="text"
-                  placeholder="Enter your username"
-                  autoComplete="username"
-                  className="auth-input"
-                />
+                <div className="auth-input-shell">
+                  <UserRound className="auth-input-icon" />
+                  <Input
+                    {...field}
+                    id="username"
+                    type="text"
+                    placeholder="Enter your username"
+                    autoComplete="username"
+                    className="auth-input"
+                  />
+                </div>
 
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
@@ -87,16 +93,21 @@ const SignInForm = () => {
             control={form.control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <FieldLabel htmlFor="password" className="auth-field-label">
+                  Password
+                </FieldLabel>
 
-                <Input
-                  {...field}
-                  id="password"
-                  type="password"
-                  placeholder="Enter your password"
-                  autoComplete="current-password"
-                  className="auth-input"
-                />
+                <div className="auth-input-shell">
+                  <LockKeyhole className="auth-input-icon" />
+                  <Input
+                    {...field}
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    autoComplete="current-password"
+                    className="auth-input"
+                  />
+                </div>
 
                 {fieldState.invalid && (
                   <FieldError errors={[fieldState.error]} />
@@ -111,7 +122,7 @@ const SignInForm = () => {
         <Button
           type="submit"
           disabled={form.formState.isSubmitting}
-          className="auth-submit-button mt-4"
+          className="auth-submit-button"
         >
           {form.formState.isSubmitting ? "Signing in..." : "Sign In"}
         </Button>
