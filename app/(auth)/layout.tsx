@@ -9,15 +9,16 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
       <section className="auth-brand-panel">
         <div className="auth-brand-content">
           <Link href="/" className="auth-brand-logo">
-              <Image
-                src="/images/logo1.svg"
-                alt="PowerOps Logo"
+            <Image
+              src="/images/logo1.svg"
+              alt="PowerOps Logo"
               width={132}
               height={40}
-                priority
+              priority
               className="h-10 w-auto"
-              />
-            </Link>
+              style={{ width: "auto" }}
+            />
+          </Link>
 
           <div className="auth-brand-copy">
             <p className="auth-kicker">Internal ERP Platform</p>
@@ -64,15 +65,16 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
 
       <section className="auth-form-panel">
         <div className="auth-mobile-logo">
-            <Image
-              src="/images/logo1.svg"
-              alt="PowerOps Logo"
+          <Image
+            src="/images/logo1.svg"
+            alt="PowerOps Logo"
             width={132}
             height={40}
-              priority
+            priority
             className="h-10 w-auto"
-            />
-          </div>
+            style={{ width: "auto" }}
+          />
+        </div>
 
         {children}
       </section>

@@ -31,10 +31,10 @@ const Layout= async({ children }: { children: React.ReactNode }) =>{
       <Sidebar />
 
    
-      <div className="flex flex-1 flex-col ml-4">
+      <div className="flex min-w-0 flex-1 flex-col">
         <Header session={session} />
 
-        <main className="flex mt-4">
+        <main className="flex w-full flex-1 mt-4">
           {children}
         </main>
       </div>

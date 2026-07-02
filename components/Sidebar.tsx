@@ -19,6 +19,7 @@ export default function Sidebar() {
             width={170}
             height={42}
             className="h-9 w-auto mt-4 ml-4"
+            style={{ width: "auto" }}
           />
         </Link>
       <nav className="sidebar-nav">
