@@ -1,4 +1,4 @@
-import ProductCard from "./ProductCard";
+import ProductStats from "./ProductStats";
 
 const Dashboard = () => {
   return (
@@ -13,7 +13,7 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        <ProductCard
+        <ProductStats
           name="Solar Panels"
           category="Solar Panel"
           quantity={320}
@@ -22,7 +22,7 @@ const Dashboard = () => {
           note="+12 received today"
         />
 
-        <ProductCard
+        <ProductStats
           name="Batteries"
           category="Battery"
           quantity={42}
@@ -31,7 +31,7 @@ const Dashboard = () => {
           note="Reorder soon"
         />
 
-        <ProductCard
+        <ProductStats
           name="Inverters"
           category="Inverter"
           quantity={85}
@@ -40,7 +40,7 @@ const Dashboard = () => {
           note="+5 added this week"
         />
 
-        <ProductCard
+        <ProductStats
           name="EV Chargers"
           category="EV Charger"
           quantity={8}

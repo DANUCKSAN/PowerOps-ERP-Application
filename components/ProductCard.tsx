@@ -1,5 +1,6 @@
+import React from 'react'
+
 interface ProductCardProps {
-  name: string;
   category:
     | "Solar Panel"
     | "Battery"
@@ -19,43 +20,19 @@ const statusStyles: Record<ProductCardProps["status"], string> = {
   "Out of Stock": "bg-red-100 text-red-700",
 };
 
-const ProductCard = ({
-  name,
-  category,
-  quantity,
-  unit,
-  status,
-  note,
-}: ProductCardProps) => {
+const ProductCard = ({category, quantity, unit, status, note }: ProductCardProps) => {
   return (
-    <div className="rounded-2xl border border-border bg-card p-5 shadow-sm transition hover:shadow-md">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-sm text-muted-foreground">{category}</p>
-          <h4 className="mt-1 text-lg font-semibold text-foreground">
-            {name}
-          </h4>
-        </div>
-
-        <span
-          className={`rounded-full px-3 py-1 text-xs font-medium ${statusStyles[status]}`}
-        >
+    <div className="border border-gray-300 rounded-lg p-4 flex flex-col">
+     <h1 className="text-lg font-semibold text-foreground">{category}</h1>
+        <p className="text-sm text-muted-foreground">{quantity} {unit}</p>
+        <span className={`rounded-full px-2 py-1 text-xs font-medium ${statusStyles[status]}`}>
           {status}
         </span>
-      </div>
-
-      <div className="mt-5">
-        <h2 className="text-3xl font-bold text-foreground">
-          {quantity}
-          <span className="ml-1 text-sm font-medium text-muted-foreground">
-            {unit}
-          </span>
-        </h2>
-
         <p className="mt-2 text-sm text-muted-foreground">{note}</p>
-      </div>
     </div>
   );
-};
+};      
+   
 
-export default ProductCard;
+
+export default ProductCard
