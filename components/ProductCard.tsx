@@ -1,4 +1,4 @@
-import React from 'react'
+import { PackageCheck } from "lucide-react";
 
 interface ProductCardProps {
   name: string;
@@ -8,24 +8,31 @@ interface ProductCardProps {
 }
 
 const statusStyles: Record<ProductCardProps["status"], string> = {
-  "In Stock": "bg-green-100 text-green-700",
-  "Low Stock": "bg-yellow-100 text-yellow-700",
-  "Out of Stock": "bg-red-100 text-red-700",
+  "In Stock": "border-emerald-200 bg-emerald-50 text-emerald-700",
+  "Low Stock": "border-amber-200 bg-amber-50 text-amber-700",
+  "Out of Stock": "border-red-200 bg-red-50 text-red-700",
 };
 
-const ProductCard = ({name, brand, status, note }: ProductCardProps) => {
+const ProductCard = ({ name, brand, status, note }: ProductCardProps) => {
   return (
-    <div className="border border-gray-300 rounded-lg p-4 flex flex-col">
-     <h1 className="text-lg font-semibold text-foreground">{name}</h1>
-        <p className="text-sm text-muted-foreground">Brand: {brand}</p>
-        <span className={`rounded-full px-2 py-1 text-xs font-medium ${statusStyles[status]}`}>
+    <article className="product-card">
+      <div className="product-card-header">
+        <div className="product-card-icon">
+          <PackageCheck className="size-5" />
+        </div>
+        <span className={`product-status-badge ${statusStyles[status]}`}>
           {status}
         </span>
-        <p className="mt-2 text-sm text-muted-foreground">{note}</p>
-    </div>
+      </div>
+
+      <div className="product-card-body">
+        <h2>{name}</h2>
+        <p>{brand}</p>
+      </div>
+
+      <p className="product-card-note">{note}</p>
+    </article>
   );
-};      
-   
+};
 
-
-export default ProductCard
+export default ProductCard;

@@ -12,16 +12,16 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar">
-         <Link href="/" className="flex items-center">
-          <Image
-            src="/images/logo1.svg"
-            alt="PowerOps"
-            width={170}
-            height={42}
-            className="h-9 w-auto mt-4 ml-4"
-            style={{ width: "auto" }}
-          />
-        </Link>
+      <Link href="/dashboard" className="sidebar-logo">
+        <Image
+          src="/images/logo1.svg"
+          alt="PowerOps"
+          width={170}
+          height={42}
+          className="h-9 w-auto"
+          style={{ width: "auto" }}
+        />
+      </Link>
       <nav className="sidebar-nav">
         {adminSidebarLinks.map((group) => (
           <div key={group.title} className="sidebar-group">
@@ -52,8 +52,6 @@ export default function Sidebar() {
               })}
             </div>
           </div>
-
-          
         ))}
       </nav>
     </aside>

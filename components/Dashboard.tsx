@@ -12,13 +12,12 @@ const Dashboard = async () => {
   ]);
 
   return (
-    <section className="w-full p-5">
-      <div className="mb-6 flex flex-col gap-4 rounded-xl border border-border bg-card p-5 shadow-sm lg:flex-row lg:items-center lg:justify-between">
+    <section className="ops-page">
+      <div className="ops-page-header">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">
-            Inventory Dashboard
-          </h1>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="ops-eyebrow">Operations overview</p>
+          <h1 className="ops-page-title">Inventory Dashboard</h1>
+          <p className="ops-page-description">
             Overview of solar stock, batteries, inverters and installation
             materials.
           </p>
@@ -37,7 +36,7 @@ const Dashboard = async () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="dashboard-stat-grid">
         <ProductStats
           name="Solar Panels"
           category="Solar Panel"

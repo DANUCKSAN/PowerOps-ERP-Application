@@ -1,16 +1,7 @@
-import Dashboard from "@/components/Dashboard"
+import Dashboard from "@/components/Dashboard";
 
+const Page = () => {
+  return <Dashboard />;
+};
 
-
-const page = () => {
-  return (
-    <div className='text-green-500 flex'>
-         <Dashboard/>
-
-        
-     
-    </div>
-  )
-}
-
-export default page
+export default Page;

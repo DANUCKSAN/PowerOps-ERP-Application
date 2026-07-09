@@ -14,11 +14,12 @@ const ProductsPage = async () => {
   ]);
 
   return (
-    <section className="flex flex-col gap-6 p-5">
-      <div className="flex items-center justify-between">
+    <section className="ops-page">
+      <div className="ops-page-header">
         <div>
-          <h2 className="text-2xl font-bold text-foreground">Products</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="ops-eyebrow">Product master</p>
+          <h1 className="ops-page-title">Products</h1>
+          <p className="ops-page-description">
             Manage product master data, stock levels, and inventory items.
           </p>
         </div>
@@ -36,14 +37,14 @@ const ProductsPage = async () => {
         />
       </div>
       {products.length === 0 ? (
-        <div className="rounded-2xl border border-border bg-card p-10 text-center">
+        <div className="ops-empty-state">
           <h3 className="text-lg font-semibold">No products found</h3>
           <p className="mt-2 text-sm text-muted-foreground">
             Start by adding your first PowerOps product.
           </p>
         </div>
       ) : (
-        <div className="mt-4 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="product-card-grid">
           {products.map((product) => {
             const stockStatus =
               product.status === "DISCONTINUED"
