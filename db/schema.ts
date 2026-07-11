@@ -80,6 +80,59 @@ export const purchaseOrderStatusEnum = pgEnum("purchase_order_status", [
   "CANCELLED",
 ]);
 
+export const paymentDirectionEnum = pgEnum("payment_direction", [
+  "INCOMING",
+  "OUTGOING",
+]);
+
+export const paymentCounterpartyTypeEnum = pgEnum(
+  "payment_counterparty_type",
+  ["CUSTOMER", "SUPPLIER", "INTERNAL"]
+);
+
+export const paymentMethodEnum = pgEnum("payment_method", [
+  "BANK_TRANSFER",
+  "CARD",
+  "CASH",
+  "CHEQUE",
+  "STRIPE",
+  "MANUAL_ADJUSTMENT",
+]);
+
+export const paymentStatusEnum = pgEnum("payment_status", [
+  "DRAFT",
+  "PENDING_APPROVAL",
+  "APPROVED",
+  "PAID",
+  "PARTIALLY_PAID",
+  "FAILED",
+  "REFUNDED",
+  "RECONCILED",
+]);
+
+export const paymentAllocationTargetEnum = pgEnum(
+  "payment_allocation_target",
+  ["INVOICE", "PURCHASE_ORDER", "PROJECT", "REFUND", "MANUAL"]
+);
+
+export const paymentApprovalStatusEnum = pgEnum("payment_approval_status", [
+  "REQUESTED",
+  "APPROVED",
+  "REJECTED",
+]);
+
+export const paymentEventTypeEnum = pgEnum("payment_event_type", [
+  "CREATED",
+  "SUBMITTED_FOR_APPROVAL",
+  "APPROVED",
+  "PAID",
+  "FAILED",
+  "ALLOCATED",
+  "RECONCILED",
+  "REFUNDED",
+  "NOTE",
+]);
+
 export const suppliers = pgTable("suppliers", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
@@ -237,5 +290,73 @@ export const purchaseOrderItems = pgTable("purchase_order_items", {
   unitCost: numeric("unit_cost", { precision: 12, scale: 2 })
     .notNull()
     .default("0.00"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const payments = pgTable(
+  "payments",
+  {
+    id: text("id").primaryKey(),
+    paymentNumber: text("payment_number").notNull(),
+    direction: paymentDirectionEnum("direction").notNull(),
+    counterpartyType:
+      paymentCounterpartyTypeEnum("counterparty_type").notNull(),
+    counterpartyName: text("counterparty_name").notNull(),
+    supplierId: text("supplier_id").references(() => suppliers.id),
+    amount: numeric("amount", { precision: 12, scale: 2 }).notNull(),
+    currency: text("currency").notNull().default("AUD"),
+    method: paymentMethodEnum("method").notNull(),
+    status: paymentStatusEnum("status").notNull().default("DRAFT"),
+    paymentDate: date("payment_date"),
+    settlementDate: date("settlement_date"),
+    dueDate: date("due_date"),
+    bankReference: text("bank_reference"),
+    externalProvider: text("external_provider"),
+    externalPaymentId: text("external_payment_id"),
+    description: text("description"),
+    createdByUserId: text("created_by_user_id").references(() => users.id),
+    approvedByUserId: text("approved_by_user_id").references(() => users.id),
+    reconciledAt: timestamp("reconciled_at"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  },
+  (table) => [uniqueIndex("payments_payment_number_unique").on(table.paymentNumber)]
+);
+
+export const paymentAllocations = pgTable("payment_allocations", {
+  id: text("id").primaryKey(),
+  paymentId: text("payment_id")
+    .notNull()
+    .references(() => payments.id),
+  targetType: paymentAllocationTargetEnum("target_type").notNull(),
+  targetReference: text("target_reference").notNull(),
+  targetLabel: text("target_label").notNull(),
+  purchaseOrderId: text("purchase_order_id").references(() => purchaseOrders.id),
+  amount: numeric("amount", { precision: 12, scale: 2 }).notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const paymentApprovals = pgTable("payment_approvals", {
+  id: text("id").primaryKey(),
+  paymentId: text("payment_id")
+    .notNull()
+    .references(() => payments.id),
+  status: paymentApprovalStatusEnum("status").notNull().default("REQUESTED"),
+  requestedByUserId: text("requested_by_user_id").references(() => users.id),
+  approvedByUserId: text("approved_by_user_id").references(() => users.id),
+  requestedAt: timestamp("requested_at").notNull().defaultNow(),
+  decidedAt: timestamp("decided_at"),
+  notes: text("notes"),
+});
+
+export const paymentEvents = pgTable("payment_events", {
+  id: text("id").primaryKey(),
+  paymentId: text("payment_id")
+    .notNull()
+    .references(() => payments.id),
+  eventType: paymentEventTypeEnum("event_type").notNull(),
+  title: text("title").notNull(),
+  description: text("description"),
+  performedByUserId: text("performed_by_user_id").references(() => users.id),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });

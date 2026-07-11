@@ -15,6 +15,13 @@
       "when": 1782954830707,
       "tag": "0001_nappy_salo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1783647501198,
+      "tag": "0002_jazzy_thor_girl",
+      "breakpoints": true
     }
   ]
 }
